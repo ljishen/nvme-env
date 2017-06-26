@@ -14,7 +14,7 @@
         --entrypoint=/bin/bash \
         ljishen/qemu-nvme
    ```
-1. Create a new QEMU-compatible Debian system image
+1. Create a QEMU-compatible Debian system image
    ```bash
    IMG=/root/img/system.img
    DIR=/tmp/system
@@ -23,17 +23,17 @@
    mkdir $DIR
    mount -o loop $IMG $DIR
    debootstrap --arch amd64 stretch $DIR
-   umount $DIR
    
-   # configuring the root Password
+   # configuring the root password
    chroot /tmp/system /usr/bin/passwd
    Enter new UNIX password:
 
    ...
 
+   umount $DIR
    exit # exit the container
    ```
-1. Create an empty file to hold your NVMe device.
+1. Create an empty file to hold the NVMe device.
    ```bash
    dd if=/dev/zero of=device/blknvme bs=1M count=1024
    ``` 
@@ -44,8 +44,8 @@
         -v `pwd`/device:/root/device \
         -v `pwd`/img:/root/img \
         ljishen/qemu-nvme \
-	-smp <number_of_cores_to_use> \
-	-m <amount_of_memory>
+        -smp <number_of_cores_to_use> \
+        -m <amount_of_memory>
    ```
    Example:
    ```bash
@@ -54,8 +54,8 @@
         -v `pwd`/device:/root/device \
         -v `pwd`/img:/root/img \
         ljishen/qemu-nvme \
-	-smp 15 \
-	-m 16G
+        -smp 15 \
+        -m 16G
    ```
 
 ## About
