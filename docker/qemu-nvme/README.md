@@ -2,12 +2,12 @@
 
 ## Usage
 
-- Download an install ISO to folder **os**, e.g. [Ubuntu 16.04.2 LTS](http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso)
-- Pull the docker image
+1. Download an install ISO to folder **os**, e.g. [Ubuntu 16.04.2 LTS](http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso)
+1. Pull the docker image
    ```bash
    docker pull ljishen/qemu-nvme
    ```
-- Launch QEMU with NVMe device enabled
+1. Launch QEMU with NVMe device enabled
    ```bash
    docker run -d \
 	--privileged \
@@ -29,7 +29,7 @@
 	-m 16G \
 	-cdrom /root/os/ubuntu-16.04.2-desktop-amd64.iso
    ```
-- Connect using your favorite VNC viewer to <host IP>:5901 
+1. Connect using your favorite VNC viewer to `<host IP>:5901`
 
 ## About
 
