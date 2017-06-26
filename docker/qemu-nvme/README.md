@@ -9,12 +9,27 @@
    ```
 - Launch QEMU with NVMe device enabled
    ```bash
-   docker run --privileged -p 5901:5901 -v `pwd`/os:/root/os -ti ljishen/qemu-nvme -smp <number of cores to use> -m <amount of memory> -cdrom <CD-ROM image>
+   docker run -d \
+	--privileged \
+	-p 5901:5901 \
+	-v `pwd`/os:/root/os \
+	ljishen/qemu-nvme \
+	-smp <number of cores to use> \
+	-m <amount of memory> \
+	-cdrom <CD-ROM image>
    ```
    Example:
    ```bash
-   docker run --privileged -p 5901:5901 -v `pwd`/os:/root/os -ti ljishen/qemu-nvme -smp 15 -m 16G -cdrom /root/os/ubuntu-16.04.2-desktop-amd64.iso
+   docker run -d \
+	--privileged \
+	-p 5901:5901 \
+	-v `pwd`/os:/root/os \
+	ljishen/qemu-nvme \
+	-smp 15 \
+	-m 16G \
+	-cdrom /root/os/ubuntu-16.04.2-desktop-amd64.iso
    ```
+- Connect using your favorite VNC viewer to <host IP>:5901 
 
 ## About
 
