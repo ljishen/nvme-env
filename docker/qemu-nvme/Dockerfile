@@ -46,6 +46,6 @@ ENTRYPOINT ["./qemu-system-x86_64", \
             "-hda", "/root/img/system.img", \
             "-append", "root=/dev/sda console=ttyS0", \
             "-kernel", "/root/linux/arch/x86_64/boot/bzImage", \
-            "-drive", "file=/root/device/blknvme,if=none,id=lightnvme", \
-            "-device", "nvme,drive=lightnvme,serial=deadbeef,lver=1,lba_index=3,nlbaf=5,namespaces=1,mdts=10", \
+            "-drive", "file=/root/device/blknvme,if=none,id=mynvme", \
+            "-device", "nvme,drive=mynvme,serial=deadbeef,lver=1,lba_index=3,nlbaf=5,namespaces=1,mdts=10", \
             "--nographic"]
