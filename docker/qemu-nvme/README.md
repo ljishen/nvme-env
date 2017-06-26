@@ -2,34 +2,61 @@
 
 ## Usage
 
-1. Download an install ISO to folder **os**, e.g. [Ubuntu 16.04.2 LTS](http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-desktop-amd64.iso)
 1. Pull the docker image
    ```bash
    docker pull ljishen/qemu-nvme
    ```
-1. Launch QEMU with NVMe device enabled
+1. Entry the build environment
    ```bash
-   docker run -d \
-	--privileged \
-	-p 5901:5901 \
-	-v `pwd`/os:/root/os \
-	ljishen/qemu-nvme \
-	-smp <number of cores to use> \
-	-m <amount of memory> \
-	-cdrom <CD-ROM image>
+   docker run -ti \
+        --privileged \
+        -v `pwd`/img:/root/img \
+        --entrypoint=/bin/bash \
+        ljishen/qemu-nvme
+   ```
+1. Create a new QEMU-compatible Debian system image
+   ```bash
+   IMG=/root/img/system.img
+   DIR=/tmp/system
+   ./qemu-img create $IMG 1G
+   mkfs.ext2 $IMG
+   mkdir $DIR
+   mount -o loop $IMG $DIR
+   debootstrap --arch amd64 stretch $DIR
+   umount $DIR
+   
+   # configuring the root Password
+   chroot /tmp/system /usr/bin/passwd
+   Enter new UNIX password:
+
+   ...
+
+   exit # exit the container
+   ```
+1. Create an empty file to hold your NVMe device.
+   ```bash
+   dd if=/dev/zero of=device/blknvme bs=1M count=1024
+   ``` 
+1. Boot the system with LightNVM-compatible device
+   ```bash
+   docker run -ti \
+        --privileged \
+        -v `pwd`/device:/root/device \
+        -v `pwd`/img:/root/img \
+        ljishen/qemu-nvme \
+	-smp <number_of_cores_to_use> \
+	-m <amount_of_memory>
    ```
    Example:
    ```bash
-   docker run -d \
-	--privileged \
-	-p 5901:5901 \
-	-v `pwd`/os:/root/os \
-	ljishen/qemu-nvme \
+   docker run -ti \
+        --privileged \
+        -v `pwd`/device:/root/device \
+        -v `pwd`/img:/root/img \
+        ljishen/qemu-nvme \
 	-smp 15 \
-	-m 16G \
-	-cdrom /root/os/ubuntu-16.04.2-desktop-amd64.iso
+	-m 16G
    ```
-1. Connect using your favorite VNC viewer to `<host IP>:5901`
 
 ## About
 
