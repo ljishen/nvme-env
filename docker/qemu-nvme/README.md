@@ -1,4 +1,23 @@
-# Dockerfile for Qemu NVMe Driver
+# Prototype Environment for NVMe
+
+The NVMe device emulation code works on QEMU.
+
+NVMe devices and namespaces information
+```bash
+ubuntu@ubuntu:~$ sudo nvme list
+Node             SN                   Model                                    Version  Namespace Usage                      Format           FW Rev
+---------------- -------------------- ---------------------------------------- -------- --------- -------------------------- ---------------- --------
+/dev/nvme0n1     deadbeef             QEMU NVMe Ctrl                           1.1      1           1.07  GB /   1.07  GB      4 KiB +  0 B   1.0
+ubuntu@ubuntu:~$
+ubuntu@ubuntu:~$ lspci
+00:00.0 Host bridge: Intel Corporation 440FX - 82441FX PMC [Natoma] (rev 02)
+00:01.0 ISA bridge: Intel Corporation 82371SB PIIX3 ISA [Natoma/Triton II]
+00:01.1 IDE interface: Intel Corporation 82371SB PIIX3 IDE [Natoma/Triton II]
+00:01.3 Bridge: Intel Corporation 82371AB/EB/MB PIIX4 ACPI (rev 03)
+00:02.0 VGA compatible controller: Cirrus Logic GD 5446
+00:03.0 Ethernet controller: Intel Corporation 82540EM Gigabit Ethernet Controller (rev 03)
+00:04.0 Non-Volatile memory controller: CNEX Labs QEMU NVM Express LightNVM Controller
+```
 
 ## Usage
 
