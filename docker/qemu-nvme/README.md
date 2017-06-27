@@ -1,6 +1,6 @@
 # Prototype Environment for NVMe
 
-The NVMe device emulation code works on QEMU.
+The NVMe device emulation code includes a LightNVM subsystem which works on QEMU.
 
 NVMe devices and namespaces information
 ```bash
@@ -20,6 +20,22 @@ ubuntu@ubuntu:~$ lspci
 ```
 
 ## Usage
+
+First please make sure your kernel has the KVM modules loaded. Check you have the similar output as follows,
+
+For Intel processor
+```bash
+$ lsmod | grep kvm
+kvm_intel             167936  0
+kvm                   516096  1 kvm_intel
+```
+
+For AMD processor
+```bash
+$ lsmod | grep kvm
+kvm_amd                61440  0
+kvm                   512000  1 kvm_amd
+```
 
 1. Download a Linux virtual machine image to folder `img`
 
@@ -67,4 +83,4 @@ ubuntu@ubuntu:~$ lspci
 
 ## About
 
-This work is based on [OpenChannelSSD/qemu-nvme](https://github.com/OpenChannelSSD/qemu-nvme).
+This work is based on [OpenChannelSSD/qemu-nvme](https://github.com/OpenChannelSSD/qemu-nvme). Check this Open-Channel Solid State Drives [Documentation](http://openchannelssd.readthedocs.io/en/latest/gettingstarted/) for more details.

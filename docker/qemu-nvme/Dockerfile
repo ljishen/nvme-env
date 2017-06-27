@@ -30,7 +30,7 @@ WORKDIR /root/qemu-nvme
 RUN ./configure --python=/usr/bin/python2 --enable-kvm --target-list=x86_64-softmmu --enable-debug --enable-linux-aio --prefix=$HOME/qemu-nvme
 RUN make -j`nproc` && make install
 
-# Build the LightNVM kernel
+# Build the kernel with the LightNVM support
 WORKDIR /root
 RUN git clone https://github.com/OpenChannelSSD/linux.git
 
