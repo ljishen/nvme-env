@@ -1,4 +1,6 @@
-vm.img
+img/*
+!img/seed
+!img/seed.img
 
 device/*
 !device/.keep

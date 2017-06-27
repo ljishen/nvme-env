@@ -2,11 +2,11 @@
 
 ## Usage
 
-1. Download a Linux virtual machine image
+1. Download a Linux virtual machine image to folder `img`
 
    The most recent version of the 64-bit QCOW2 image for Ubuntu 16.04 is [xenial-server-cloudimg-amd64-disk1.img](http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img). More Images can be found from [Get images](https://docs.openstack.org/image-guide/obtain-images.html).
 
-1. Create a symbolic link `vm.img` to the image file in folder `img`
+1. Create a symbolic link `vm.img` pointed to the image file
    ```bash
    ln -s <image_file> img/vm.img
    ```
