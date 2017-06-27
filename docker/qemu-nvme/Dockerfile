@@ -43,8 +43,9 @@ WORKDIR /root/qemu-nvme/bin
 
 ENTRYPOINT ["./qemu-system-x86_64", \
             "-enable-kvm", \
-            "-hda", "/root/img/system.img", \
-            "-append", "root=/dev/sda console=ttyS0", \
+            "-cdrom", "/root/img/seed.img", \
+            "-hda", "/root/img/vm.img", \
+            "-append", "root=/dev/sda1 console=ttyS0", \
             "-kernel", "/root/linux/arch/x86_64/boot/bzImage", \
             "-drive", "file=/root/device/blknvme,if=none,id=mynvme", \
             "-device", "nvme,drive=mynvme,serial=deadbeef,lver=1,lba_index=3,nlbaf=5,namespaces=1,mdts=10", \

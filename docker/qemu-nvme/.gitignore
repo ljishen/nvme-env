@@ -1,5 +1,4 @@
-img/*
-!img/.keep
+vm.img
 
 device/*
 !device/.keep

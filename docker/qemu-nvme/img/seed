@@ -1,0 +1,5 @@
+#cloud-config
+password: passw0rd
+chpasswd: { expire: False }
+ssh_pwauth: True
+ssh_import_id: ljishen
