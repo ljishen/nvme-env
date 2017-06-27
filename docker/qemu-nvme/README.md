@@ -19,9 +19,9 @@ ubuntu@ubuntu:~$ lspci
 00:04.0 Non-Volatile memory controller: CNEX Labs QEMU NVM Express LightNVM Controller
 ```
 
-## Usage
+## Prerequisite
 
-First please make sure your kernel has the KVM modules loaded. Check you have the similar output as follows,
+Please make sure your kernel has the KVM modules loaded. Check you have the similar output as follows,
 
 For Intel processor
 ```bash
@@ -36,6 +36,8 @@ $ lsmod | grep kvm
 kvm_amd                61440  0
 kvm                   512000  1 kvm_amd
 ```
+
+## Usage
 
 1. Download a Linux virtual machine image to folder `img`
 
