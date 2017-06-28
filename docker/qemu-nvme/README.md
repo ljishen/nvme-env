@@ -1,6 +1,7 @@
 # Prototype Environment for NVMe
 
-[![](https://images.microbadger.com/badges/image/ljishen/qemu-nvme.svg)](http://microbadger.com/images/ljishen/qemu-nvme "Get your own image badge on microbadger.com")
+[![Build Status](https://travis-ci.org/ljishen/nvme-env.svg?branch=master)](https://travis-ci.org/ljishen/nvme-env)
+[![](https://images.microbadger.com/badges/image/ljishen/qemu-nvme.svg)](http://microbadger.com/images/ljishen/qemu-nvme)
 
 The NVMe device emulation code includes a LightNVM subsystem which works on QEMU.
 
