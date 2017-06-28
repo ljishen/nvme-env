@@ -6,7 +6,7 @@ services:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y qemu-kvm bridge-utils libvirt-bin
-  - lsmod | grep kvm
+  - sudo lsmod | grep kvm
   - cd docker/qemu-nvme/
 
 install:
