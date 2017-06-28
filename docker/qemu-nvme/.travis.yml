@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t ljishen/qemu-nvme .
+
+before_script:
+  - wget -O img/vm.img http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+  - dd if=/dev/zero of=device/blknvme bs=1M count=1024
+
+script:
+  - docker ps -a | grep qemu-nvme
+  - docker run -ti --privileged -v `pwd`/device:/root/device -v `pwd`/img:/root/img ljishen/qemu-nvme -smp 4 -m 4G
