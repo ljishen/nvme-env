@@ -1,5 +1,7 @@
 # Prototype Environment for NVMe
 
+[![](https://images.microbadger.com/badges/image/ljishen/qemu-nvme.svg)](http://microbadger.com/images/ljishen/qemu-nvme "Get your own image badge on microbadger.com")
+
 The NVMe device emulation code includes a LightNVM subsystem which works on QEMU.
 
 NVMe devices and namespaces information
@@ -62,7 +64,7 @@ kvm                   512000  1 kvm_amd
    dd if=/dev/zero of=device/blknvme bs=1M count=1024
    ```
 
-1. Boot the QEMU system
+1. Boot the QEMU Linux system
    ```bash
    docker run -ti \
         --privileged \
