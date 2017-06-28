@@ -56,11 +56,13 @@ kvm                   512000  1 kvm_amd
    ```bash
    docker pull ljishen/qemu-nvme
    ```
+
 1. Create an empty file to hold the NVMe device.
    ```bash
    dd if=/dev/zero of=device/blknvme bs=1M count=1024
-   ``` 
-1. Boot the system with LightNVM-compatible device
+   ```
+
+1. Boot the QEMU system
    ```bash
    docker run -ti \
         --privileged \
@@ -82,6 +84,11 @@ kvm                   512000  1 kvm_amd
    ```
 
 1. Login with your customized credential (default user `ubuntu` with password `passw0rd`)
+
+1. Install Docker in the emulation system using
+   ```bash
+   curl -sSL https://get.docker.com/ | sh
+   ```
 
 ## About
 
