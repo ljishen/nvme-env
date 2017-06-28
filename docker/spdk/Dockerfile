@@ -5,19 +5,20 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 RUN apt-get update \
     && apt-get install -y \
-	git \
-	gcc \
-	g++ \
-	make \
-	libcunit1-dev \
-	libaio-dev \
-	libssl-dev \
-	python-dev
+        git \
+        gcc \
+        g++ \
+        make \
+        libcunit1-dev \
+        libaio-dev \
+        libssl-dev \
+        python-dev \
+        pciutils
 
 # Additional dependencies for NVMe over Fabrics
 RUN apt-get install -y \
-	libibverbs-dev \
-	librdmacm-dev
+        libibverbs-dev \
+        librdmacm-dev
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
