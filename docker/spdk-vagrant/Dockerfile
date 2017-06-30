@@ -9,6 +9,7 @@ RUN apt-get update \
 ENV VAGRANT_VER 1.9.5
 RUN wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_${VAGRANT_VER}_x86_64.deb
 RUN dpkg -i vagrant_${VAGRANT_VER}_x86_64.deb
+RUN rm -f vagrant_${VAGRANT_VER}_x86_64.deb
 
 # Install VirtualBox
 ##! Check code name of the base image
@@ -29,5 +30,9 @@ RUN rm -f $EXT_PACK
 # Add bootstrap script
 COPY up.sh /root/up.sh
 RUN chmod +x /root/up.sh
+
+# Clean Up
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/root/up.sh"]

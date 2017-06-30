@@ -27,3 +27,7 @@ RUN git clone https://github.com/spdk/spdk.git
 WORKDIR /root/spdk
 RUN git submodule update --init
 RUN ./configure && make
+
+# Clean Up
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
