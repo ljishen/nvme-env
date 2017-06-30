@@ -1,5 +1,8 @@
 # NVMe Emulator for SPDK in Docker
 
+[![Build Status](https://travis-ci.org/ljishen/nvme-env.svg?branch=master)](https://travis-ci.org/ljishen/nvme-env)
+[![](https://images.microbadger.com/badges/image/ljishen/spdk-vagrant.svg)](http://microbadger.com/images/ljishen/spdk-vagrant)
+
 This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/master/scripts/vagrant/README.md) configured for project Storage Performance Development Kit (SPDK) into a docker container.
 
 ## Usage
@@ -19,7 +22,7 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
         ljishen/spdk-vagrant \
         /sbin/vboxconfig
    ```
-   This process shows several error messages "Failed to connect to bus: No such file or directory" which are expected and unaffected. These errors comes from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
+   This process shows the error message **Failed to connect to bus: No such file or directory** for several times which are expected and harmless. These errors come from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
 
 1. Launch the VM
    ```bash

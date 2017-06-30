@@ -5,15 +5,14 @@ language: generic
 services:
   - docker
 
-before_install:
-  - cd docker/qemu-nvme/
-
 install:
-  - docker build -t ljishen/qemu-nvme .
+  - docker build -t ljishen/qemu-nvme docker/qemu-nvme/
+  - docker build -t ljishen/spdk-vagrant docker/spdk-vagrant/
 
 before_script:
-  - wget -O img/vm.img http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
-  - dd if=/dev/zero of=device/blknvme bs=1M count=1024
+  - wget -O docker/qemu-nvme/img/vm.img http://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img
+  - dd if=/dev/zero of=docker/qemu-nvme/device/blknvme bs=1M count=1024
 
+# FIXME: Figure out how to launch the VM for test
 # script:
 #   - docker run -ti --privileged -v `pwd`/device:/root/device -v `pwd`/img:/root/img ljishen/qemu-nvme -smp 4 -m 4G
