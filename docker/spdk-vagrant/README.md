@@ -19,7 +19,7 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
         ljishen/spdk-vagrant \
         /sbin/vboxconfig
    ```
-This process shows several error messages "Failed to connect to bus: No such file or directory" which are expected and unaffected. These errors comes from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
+   This process shows several error messages "Failed to connect to bus: No such file or directory" which are expected and unaffected. These errors comes from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
 
 1. Launch the VM
    ```bash
