@@ -9,13 +9,23 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
    sudo apt-get install linux-headers-$(uname -r)
    ```
 
-1. Launch the VM
+1. Build the VirtualBox kernel modules **only once** before the first time your launch the VM
    ```bash
    docker run -ti \
         --privileged \
         --net host \
         -v /usr/src:/usr/src \
         -v /lib/modules:/lib/modules \
+        ljishen/spdk-vagrant \
+        /sbin/vboxconfig
+   ```
+This process shows several error messages "Failed to connect to bus: No such file or directory" which are expected and unaffected. These errors comes from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
+
+1. Launch the VM
+   ```bash
+   docker run -ti \
+        --privileged \
+        --net host \
         ljishen/spdk-vagrant
    ```
 
@@ -46,9 +56,10 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
 
 
 ## VM Configuration
+
 By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if you want to change the default resource configuration
 
-1. Launch the container with **bash**
+1. Start the container with **bash**
    ```bash
     docker run -ti \
         --privileged \
@@ -59,6 +70,8 @@ By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if 
         /bin/bash
    ```
 
-1. Edit the file `scripts/vagrant/env.sh` to change the value of `SPDK_VAGRANT_VMCPU` or `SPDK_VAGRANT_VMRAM`, then save and exit.
+1. Edit the file `/root/spdk/scripts/vagrant/env.sh` to change the value of `SPDK_VAGRANT_VMCPU` or `SPDK_VAGRANT_VMRAM`, then save and exit.
 
-1. Run `/root/up.sh` to launch the VM.
+1. Run `/sbin/vboxconfig` if your didn't launch the VM before.
+
+1. Launch the VM with `/root/up.sh`.

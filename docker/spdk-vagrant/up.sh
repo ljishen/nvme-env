@@ -7,8 +7,7 @@ set -e
 # for several times.
 # This is expected and unaffected because This command is of little use
 # except for debugging and package upgrades.
-/sbin/vboxconfig || true && \
-	cd scripts/vagrant && \
-	source ./env.sh && \
-	vagrant up && \
-	vagrant ssh
+cd scripts/vagrant && \
+        source ./env.sh && \
+        vagrant up && \
+        vagrant ssh
