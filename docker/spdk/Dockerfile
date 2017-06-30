@@ -3,6 +3,7 @@
 FROM phusion/baseimage:0.9.22
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
+# See all prerequisites at https://github.com/spdk/spdk#prerequisites
 RUN apt-get update \
     && apt-get install -y \
         git \
