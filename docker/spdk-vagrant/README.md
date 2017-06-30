@@ -5,6 +5,15 @@
 
 This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/master/scripts/vagrant/README.md) configured for project Storage Performance Development Kit (SPDK) into a docker container.
 
+
+## Prerequisite
+
+Check if your Intel CPU support [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set
+```bash
+grep '\bssse3\b' /proc/cpuinfo
+```
+
+
 ## Usage
 
 1. Install the kernel headers on Ubuntu or Debian Linux
@@ -31,6 +40,7 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
         --net host \
         ljishen/spdk-vagrant
    ```
+   This gonna take a while since it sets up the network, installs all the dependencies and also builds the SPDK.
 
 1. Now you can try the NVMe sample application "Hello World" as mentioned in the [doc](https://github.com/spdk/spdk/blob/master/scripts/vagrant/README.md#hello-world)
    ```bash
@@ -57,6 +67,19 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
    Hello world!
    ```
 
+1. You can `exit` the VM and learn how to control the VM by typing `vagrant --help`, e.g.
+   ```bash
+   # vagrant status
+   Current machine states:
+
+   default                   running (virtualbox)
+
+   The VM is running. To stop this VM, you can run `vagrant halt` to
+   shut it down forcefully, or you can run `vagrant suspend` to simply
+   suspend the virtual machine. In either case, to restart it again,
+   simply run `vagrant up`.
+   ```
+
 
 ## VM Configuration
 
@@ -78,3 +101,9 @@ By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if 
 1. Run `/sbin/vboxconfig` if your didn't launch the VM before.
 
 1. Launch the VM with `/root/up.sh`.
+
+
+## Tested Environment
+
+* Docker Version >= 1.12.5
+* Ubuntu Release >= 12.04
