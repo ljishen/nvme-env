@@ -14,7 +14,8 @@ RUN apt-get update \
         libaio-dev \
         libssl-dev \
         python-dev \
-        pciutils
+        pciutils \
+        kmod
 
 # Additional dependencies for NVMe over Fabrics
 RUN apt-get install -y \
@@ -26,8 +27,13 @@ RUN git clone https://github.com/spdk/spdk.git
 
 WORKDIR /root/spdk
 RUN git submodule update --init
-RUN ./configure && make
+
+# Add build script
+COPY build.sh /root/build.sh
+RUN chmod +x /root/build.sh
 
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+CMD ["/root/build.sh"]

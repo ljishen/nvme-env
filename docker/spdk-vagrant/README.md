@@ -25,7 +25,6 @@ grep '\bssse3\b' /proc/cpuinfo
    ```bash
    docker run -ti \
         --privileged \
-        --net host \
         -v /usr/src:/usr/src \
         -v /lib/modules:/lib/modules \
         ljishen/spdk-vagrant \

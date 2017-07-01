@@ -1,10 +1,15 @@
-# VERSION 1.0
+# VERSION 1.1
 
-FROM ljishen/spdk
+FROM phusion/baseimage:0.9.22
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 RUN apt-get update \
-    && apt-get install -y wget
+    && apt-get install -y \
+        wget \
+        git
+
+WORKDIR /root
+RUN git clone https://github.com/spdk/spdk.git
 
 ENV VAGRANT_VER 1.9.5
 RUN wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_${VAGRANT_VER}_x86_64.deb
@@ -28,11 +33,11 @@ RUN VBoxManage extpack install \
 RUN rm -f $EXT_PACK
 
 # Add bootstrap script
-COPY up.sh /root/up.sh
-RUN chmod +x /root/up.sh
+COPY up.sh .
+RUN chmod +x up.sh
 
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["/root/up.sh"]
+CMD ["./up.sh"]

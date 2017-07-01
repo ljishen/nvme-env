@@ -2,7 +2,7 @@
 
 set -e
 
-cd scripts/vagrant && \
+cd spdk/scripts/vagrant && \
         source ./env.sh && \
         vagrant up && \
         vagrant ssh && \
