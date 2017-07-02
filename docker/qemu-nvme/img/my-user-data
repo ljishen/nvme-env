@@ -2,4 +2,5 @@
 password: passw0rd
 chpasswd: { expire: False }
 ssh_pwauth: True
-ssh_import_id: ljishen
+sudo: ALL=(ALL) NOPASSWD:ALL
+groups: sudo

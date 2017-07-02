@@ -15,12 +15,9 @@ RUN apt-get update \
         libsasl2-dev libsdl1.2-dev libseccomp-dev libsnappy-dev libssh2-1-dev \
         libvde-dev libvdeplug-dev libvte-dev libxen-dev liblzo2-dev \
         valgrind xfslibs-dev \
-        libnfs-dev libiscsi-dev \
-        qemu-kvm
+        libnfs-dev libiscsi-dev
 
-RUN apt-get install -y \
-        bc \
-        debootstrap
+RUN apt-get install -y bc
 
 # Build the NVMe device emulation
 WORKDIR /root
@@ -49,37 +46,22 @@ WORKDIR $LINUX_SRC
 RUN patch -p1 < $AUFS_SRC/aufs4-kbuild.patch
 RUN patch -p1 < $AUFS_SRC/aufs4-base.patch
 RUN patch -p1 < $AUFS_SRC/aufs4-mmap.patch
-RUN patch -p1 < $AUFS_SRC/aufs4-standalone.patch
 RUN cp -a $AUFS_SRC/Documentation/* Documentation/
 RUN cp -a $AUFS_SRC/fs/* fs/
 RUN cp -a $AUFS_SRC/include/uapi/linux/aufs_type.h include/uapi/linux/
 
 ## Build the kernel
 ### Generate kernel config
-### General generation:      http://mgalgs.github.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html
-### Specifically for Docker: https://blog.tutum.co/2013/12/14/enabling-the-user-namespace-in-ubuntu-13-10-saucy/
-###                          http://blog.serverbuddies.com/enable-iptables-support-in-linux-kernel/
-###     Check kernel config: https://github.com/moby/moby/blob/master/contrib/check-config.sh
+### See http://mgalgs.github.io/2015/05/16/how-to-build-a-custom-linux-kernel-for-qemu-2015-edition.html
+###     https://github.com/moby/moby/blob/master/contrib/check-config.sh (Check docker-compatible kernel config)
 COPY configs/.config .
 RUN make -j`nproc`
-### Kernel header files are needed when building aufs-util
-RUN make headers_install
 
-## Build aufs-util
+# Clean Up
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 WORKDIR /root
-RUN git clone git://git.code.sf.net/p/aufs/aufs-util
-WORKDIR /root/aufs-util
-###! CHECK if the branch matches the nearest lower number of the kernel's minor version number.
-RUN git checkout origin/aufs4.x-rcN
-RUN make -j`nproc` && make install
-
-WORKDIR /root/qemu-nvme/bin
-ENTRYPOINT ["./qemu-system-x86_64", \
-            "-enable-kvm", \
-            "-cdrom", "/root/img/seed.img", \
-            "-hda", "/root/img/vm.img", \
-            "-append", "root=/dev/sda1 console=ttyS0", \
-            "-kernel", "/root/linux/arch/x86_64/boot/bzImage", \
-            "-drive", "file=/root/device/blknvme,if=none,id=mynvme", \
-            "-device", "nvme,drive=mynvme,serial=deadbeef,lver=1,lba_index=3,nlbaf=5,namespaces=1,mdts=10", \
-            "--nographic"]
+COPY up.sh .
+RUN chmod +x up.sh
+ENTRYPOINT ["./up.sh"]

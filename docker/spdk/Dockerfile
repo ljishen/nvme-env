@@ -24,16 +24,14 @@ RUN apt-get install -y \
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
+RUN git -C /root/spdk submodule update --init
 
-WORKDIR /root/spdk
-RUN git submodule update --init
-
-# Add build script
-COPY build.sh /root/build.sh
-RUN chmod +x /root/build.sh
+# Add run script
+COPY run.sh .
+RUN chmod +x run.sh
 
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["/root/build.sh"]
+ENTRYPOINT ["./run.sh"]
