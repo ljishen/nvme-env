@@ -28,6 +28,7 @@ enp0s3     1500 0        48      0      0 0            53      0      0      0 B
 lo        65536 0       110      0      0 0           110      0      0      0 LRU
 ```
 
+
 ## Prerequisite
 
 Please make sure your kernel has the KVM modules loaded. Check you have the similar output as follows,
@@ -48,6 +49,7 @@ kvm                   512000  1 kvm_amd
 
 Install the KVM if you don't have the KVM modules. For Ubuntu, here is the documentation for [KVM/Installation](https://help.ubuntu.com/community/KVM/Installation).
 
+
 ## Usage
 
 1. Download a Linux virtual machine image and place it into folder `img`
@@ -56,7 +58,7 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 
 1. Create a symbolic link `vm.img` pointed to the image file
    ```bash
-   ln -s <image_file> img/vm.img
+   ln -s img/<image_file> img/vm.img
    ```
 
 1. (Optional) Modify `img/my-user-data` and generate your `img/seed.img` using `cloud-localds`. `cloud-localds` is available in package `cloud-image-utils` if you are working on Ubuntu.
@@ -83,7 +85,11 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 
    More options can be found at [QEMU Emulator User Documentation](http://download.qemu.org/qemu-doc.html).
 
-1. Login the Linux system with your customized credential (default user `ubuntu` with password `passw0rd`)
+1. Login the Linux system with your customized credential (default user `ubuntu` with password `passw0rd`). Now you have the CNEX Labs LightNVM SDK, the LightNVM-compatible device working in the system.
+
+### Running SPDK Applications
+
+If you want to use SPDK in this QEMU system emulator, please make sure your CPU supports the [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set before stepping forward.
 
 1. Install Docker in the emulation system using
    ```bash
@@ -124,16 +130,21 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
    Hello world!
    ```
 
+
 ## Tested Environment
 
 * Docker Version >= 1.12.5
+* Ubuntu Release >= 12.04
+
 
 ## About
 
 This work is based on [OpenChannelSSD/qemu-nvme](https://github.com/OpenChannelSSD/qemu-nvme).
 
+
 ## References
 
 * Open-Channel Solid State Drives http://openchannelssd.readthedocs.io/en/latest/gettingstarted/
 * Modify virtual machine image https://docs.openstack.org/image-guide/modify-images.html
+* Storage Performance Development Kit (SPDK) Github https://github.com/spdk/spdk
 * SPDK code sample - Hello World https://software.intel.com/en-us/articles/accelerating-your-nvme-drives-with-spdk

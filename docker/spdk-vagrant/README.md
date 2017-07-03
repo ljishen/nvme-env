@@ -8,7 +8,7 @@ This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/maste
 
 ## Prerequisite
 
-Check if your Intel CPU support [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set
+Check if your Intel CPU support the [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set
 ```bash
 grep '\bssse3\b' /proc/cpuinfo
 ```
