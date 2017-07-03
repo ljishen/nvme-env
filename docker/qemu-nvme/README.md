@@ -85,11 +85,26 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 
    More options can be found at [QEMU Emulator User Documentation](http://download.qemu.org/qemu-doc.html).
 
-1. Login the Linux system with your customized credential (default user `ubuntu` with password `passw0rd`). Now you have the CNEX Labs LightNVM SDK, the LightNVM-compatible device working in the system.
+1. Login the Linux system with your customized credential (default user `ubuntu` with password `passw0rd`). Now you have the CNEX Labs LightNVM SDK - the LightNVM-compatible device working in the system.
+
+   Install the [nvme-cli](https://github.com/linux-nvme/nvme-cli) command line tool to play with the NVMe device. Here are some examples:
+   ```bash
+   # Show namespace properties in human-readable format
+   sudo nvme id-ns /dev/nvme0n1 -H
+
+   # Retrieve SMART log
+   sudo nvme smart-log /dev/nvme0n1
+
+   # Get feature of the NVMe controller
+   sudo nvme get-feature /dev/nvme0n1 -f 1 -H
+
+   # Read some starting logical blocks to the stdout
+   sudo nvme read /dev/nvme0n1 -z 128
+   ```
 
 ### Running SPDK Applications
 
-If you want to use SPDK in this QEMU system emulator, please make sure your CPU supports the [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set before stepping forward.
+If you want to use SPDK in this QEMU system emulator, please make sure your CPU supports the [SSSE3](https://en.wikipedia.org/wiki/SSSE3) instruction set before moving forward.
 
 1. Install Docker in the emulation system using
    ```bash
