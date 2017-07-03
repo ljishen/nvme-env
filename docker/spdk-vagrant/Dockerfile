@@ -41,4 +41,5 @@ RUN chmod +x up.sh
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["./up.sh"]
+WORKDIR /root/spdk/scripts/vagrant
+CMD ["/root/up.sh"]
