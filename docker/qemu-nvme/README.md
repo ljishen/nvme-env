@@ -85,7 +85,7 @@ kvm                   512000  1 kvm_amd
 
 1. Install Docker in the emulation system using
    ```bash
-   curl -sSL https://get.docker.com/ | sh
+   curl -fsSL get.docker.com | sh
    ```
    You probably want to add your user to the docker group to avoid putting `sudo` before every `docker` command
    ```bash
@@ -97,6 +97,7 @@ kvm                   512000  1 kvm_amd
    ```bash
    docker run -ti --privileged -v /dev:/dev ljishen/spdk
    ```
+   Just wait until the SPDK source compiling finished.
 
 1. Try any of the NVMe sample application in the SPDK repo. Here is the sample output from the "Hello World" application
    ```bash
@@ -121,6 +122,16 @@ kvm                   512000  1 kvm_amd
    Hello world!
    ```
 
+## Tested Environment
+
+* Docker Version >= 1.12.5
+
 ## About
 
-This work is based on [OpenChannelSSD/qemu-nvme](https://github.com/OpenChannelSSD/qemu-nvme). Check this Open-Channel Solid State Drives [Documentation](http://openchannelssd.readthedocs.io/en/latest/gettingstarted/) for more details.
+This work is based on [OpenChannelSSD/qemu-nvme](https://github.com/OpenChannelSSD/qemu-nvme).
+
+## References
+
+* Open-Channel Solid State Drives http://openchannelssd.readthedocs.io/en/latest/gettingstarted/
+* Modify virtual machine image https://docs.openstack.org/image-guide/modify-images.html
+* SPDK code sample - Hello World https://software.intel.com/en-us/articles/accelerating-your-nvme-drives-with-spdk
