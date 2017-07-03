@@ -7,7 +7,7 @@ Simple image built following the official [SPDK Documentation](https://github.co
 
 ## Usage
 
-The container starts with configuring and compiling the SPDK source in order to aware the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX".**
+The container starts with configuring and compiling the SPDK source so that it is aware of the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX".**
 
 * When work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme), start the container without argument
   ```bash

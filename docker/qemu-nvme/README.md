@@ -46,6 +46,8 @@ kvm_amd                61440  0
 kvm                   512000  1 kvm_amd
 ```
 
+Install the KVM if you don't have the KVM modules. For Ubuntu, here is the documentation for [KVM/Installation](https://help.ubuntu.com/community/KVM/Installation).
+
 ## Usage
 
 1. Download a Linux virtual machine image and place it into folder `img`

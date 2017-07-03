@@ -10,6 +10,7 @@ RUN apt-get update \
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
+RUN git -C /root/spdk submodule update --init
 
 ENV VAGRANT_VER 1.9.5
 RUN wget https://releases.hashicorp.com/vagrant/1.9.5/vagrant_${VAGRANT_VER}_x86_64.deb
