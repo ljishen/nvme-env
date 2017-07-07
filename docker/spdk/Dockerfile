@@ -6,13 +6,17 @@ MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 # See all prerequisites at https://github.com/spdk/spdk#prerequisites
 RUN apt-get update \
     && apt-get install -y \
-        git \
         gcc \
         g++ \
         make \
         libcunit1-dev \
         libaio-dev \
         libssl-dev \
+        git \
+        astyle \
+        pep8 \
+        lcov \
+        clang \
         python-dev \
         pciutils \
         kmod
@@ -20,7 +24,7 @@ RUN apt-get update \
 # Additional dependencies for NVMe over Fabrics
 RUN apt-get install -y \
         libibverbs-dev \
-        librdmacm-dev
+        librdmacm
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
