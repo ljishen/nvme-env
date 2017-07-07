@@ -85,7 +85,7 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 
    More options can be found at [QEMU Emulator User Documentation](http://download.qemu.org/qemu-doc.html).
 
-1. Login the Linux system with your customized credential (default user `ubuntu` with password `passw0rd`). Now you have the CNEX Labs LightNVM SDK - the LightNVM-compatible device working in the system.
+1. Login the Linux system with your customized credential (password for the default user is `passw0rd`). Now you have the CNEX Labs LightNVM SDK - the LightNVM-compatible device working in the system.
 
    Install the [nvme-cli](https://github.com/linux-nvme/nvme-cli) command line tool to play with the NVMe device. Here are some examples:
    ```bash

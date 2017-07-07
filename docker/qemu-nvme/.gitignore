@@ -1,6 +1,6 @@
 img/*
 !img/my-user-data
-!img/seed.img
+!img/my-seed.img
 
 device/*
 !device/.keep

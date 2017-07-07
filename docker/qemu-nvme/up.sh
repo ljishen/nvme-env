@@ -9,7 +9,7 @@ if [[ "$@" == -* ]]; then
     /root/qemu-nvme/bin/qemu-system-x86_64 \
         -enable-kvm \
         -cpu SandyBridge \
-        -cdrom "/root/img/seed.img" \
+        -cdrom "/root/img/my-seed.img" \
         -hda "/root/img/vm.img" \
         -append "root=/dev/sda1 console=ttyS0" \
         -kernel "/root/linux/arch/x86_64/boot/bzImage" \
