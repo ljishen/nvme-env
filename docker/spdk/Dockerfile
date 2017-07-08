@@ -24,7 +24,7 @@ RUN apt-get update \
 # Additional dependencies for NVMe over Fabrics
 RUN apt-get install -y \
         libibverbs-dev \
-        librdmacm
+        librdmacm-dev
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
