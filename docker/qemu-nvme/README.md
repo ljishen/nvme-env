@@ -146,6 +146,15 @@ If you want to use SPDK in this QEMU system emulator, please make sure your CPU 
    ```
 
 
+## Troubleshooting
+
+Look here if you have a problem while following the previous usage steps.
+
+### Error: "docker: failed to register layer: Error processing tar file(exit status 1): write /usr/lib/x86_64-linux-gnu/libLLVM-3.8.so.1: no space left on device."
+
+You may need to resize the image using [virt-* tools](https://docs.openstack.org/image-guide/modify-images.html#resize-an-image), then retry the failed docker command.
+
+
 ## Tested Environment
 
 * Docker Version >= 1.12.5
