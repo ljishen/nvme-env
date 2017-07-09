@@ -16,15 +16,18 @@ RUN apt-get update \
         astyle \
         pep8 \
         lcov \
-        clang \
-        python-dev \
-        pciutils \
-        kmod
+        clang
 
 # Additional dependencies for NVMe over Fabrics
 RUN apt-get install -y \
         libibverbs-dev \
         librdmacm-dev
+
+# Dependencies for getting device information and load uio_pci_generic kernel module
+RUN apt-get install -y \
+        nvme-cli \
+        pciutils \
+        kmod
 
 WORKDIR /root
 RUN git clone https://github.com/spdk/spdk.git
