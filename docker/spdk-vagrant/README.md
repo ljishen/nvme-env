@@ -84,7 +84,7 @@ grep '\bssse3\b' /proc/cpuinfo
 
 By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if you want to change the default resource configuration
 
-1. Launching the **bash** shell
+1. Launch the **bash** shell
    ```bash
     docker run -ti \
         --privileged \
