@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+source ./env.sh && \
+    vagrant up && \
+    vagrant ssh && \
+    shell

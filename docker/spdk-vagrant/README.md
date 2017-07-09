@@ -84,7 +84,7 @@ grep '\bssse3\b' /proc/cpuinfo
 
 By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if you want to change the default resource configuration
 
-1. Start the container with **bash**
+1. Launching the **bash** shell
    ```bash
     docker run -ti \
         --privileged \
@@ -92,14 +92,14 @@ By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if 
         -v /usr/src:/usr/src \
         -v /lib/modules:/lib/modules \
         ljishen/spdk-vagrant \
-        /bin/bash
+        shell
    ```
 
 1. Edit the file `/root/spdk/scripts/vagrant/env.sh` to change the value of `SPDK_VAGRANT_VMCPU` or `SPDK_VAGRANT_VMRAM`, then save and exit.
 
 1. Run `/sbin/vboxconfig` if your didn't launch the VM before.
 
-1. Launch the VM with `/root/up.sh`.
+1. Launch the VM with `up`.
 
 
 ## Tested Environment

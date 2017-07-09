@@ -34,12 +34,14 @@ RUN VBoxManage extpack install \
 RUN rm -f $EXT_PACK
 
 # Add bootstrap script
-COPY up.sh .
-RUN chmod +x up.sh
+RUN mkdir /root/bin
+COPY shell up /root/bin/
+RUN chmod +x /root/bin/shell /root/bin/up
+ENV PATH /root/bin:$PATH
 
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /root/spdk/scripts/vagrant
-CMD ["/root/up.sh"]
+CMD ["up"]
