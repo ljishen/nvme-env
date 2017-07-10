@@ -102,6 +102,13 @@ By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if 
 1. Launch the VM with `up`.
 
 
+## Troubleshooting
+
+### VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005)
+
+You host system may have an out-of-data VirtualBox installed. Try to either update or uninstall it.
+
+
 ## Tested Environment
 
 * Docker Version >= 1.12.5
