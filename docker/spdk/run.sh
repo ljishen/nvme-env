@@ -2,10 +2,17 @@
 
 set -e
 
+# Build SPDK and DPDK first
 cd /root/spdk
-
-# Build SPDK and DPDK
 ./configure && make -j`nproc`
+
+# Build the RocksDB
+cd /root/rocksdb
+make -j`nproc` db_bench SPDK_DIR=/root/spdk
+mkdir /usr/local/etc/spdk/
+cd /root/spdk
+cp etc/spdk/rocksdb.conf.in /usr/local/etc/spdk/rocksdb.conf
+scripts/gen_nvme.sh >> /usr/local/etc/spdk/rocksdb.conf
 
 if [ $# -eq 0 ]; then
     LINUX_SRC=/usr/src/linux
@@ -16,10 +23,17 @@ if [ $# -eq 0 ]; then
     mount -t 9p -o trans=virtio modules_mount "$LINUX_SRC" -oversion=9p2000.L,posixacl,cache=loose
 
     make -C "$LINUX_SRC" modules_install
+fi
 
-    scripts/setup.sh && /bin/bash
+# By default this script allocates 2GB (1024 huge pages)
+scripts/setup.sh
+
+test/lib/blobfs/mkfs/mkfs /usr/local/etc/spdk/rocksdb.conf Nvme0n1
+
+if [ $# -eq 0 ]; then
+    /bin/bash
 else
-    # Do whatever if the system already configured (with real NVMe device, uio_pci_generic module loaded).
-    # Reference: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1473109
-    scripts/setup.sh && "$@"
+   # Do whatever if the system already configured (with real NVMe device, uio_pci_generic module loaded).
+   # Also see: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1473109
+   "$@"
 fi
