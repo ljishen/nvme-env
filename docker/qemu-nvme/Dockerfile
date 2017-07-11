@@ -62,6 +62,6 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /root
-COPY up.sh .
-RUN chmod +x up.sh
-ENTRYPOINT ["./up.sh"]
+COPY up .
+RUN chmod +x up
+ENTRYPOINT ["./up"]

@@ -29,7 +29,7 @@ The container startup process encompasses compiling the SPDK source so that it i
       /bin/bash
   ```
 
-This docker command bind-mounts to the `/dev` is necessary since it needs to access `/dev/uio0`.
+This docker command bind-mounts to the `/dev` which is necessary since it needs to access `/dev/uio0`.
 <!---
 Here is the error message if we don't bind-mounts to /dev
 
