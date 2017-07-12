@@ -42,7 +42,7 @@ mkfs.c:  77:spdk_mkfs_run: *ERROR*: bdev Nvme0n1 not found
 
 ### Testing RocksDB with SPDK
 
-The [BlobFS Getting Started Guide](http://www.spdk.io/doc/blobfs.html) has a detail instruction of how to run `db_bench` against a variety of workloads with `test/blobfs/rocksdb/run_tests.sh`.
+The [BlobFS Getting Started Guide](http://www.spdk.io/doc/blobfs.html) has a detail instruction of how to run `db_bench` against a variety of workloads with `test/blobfs/rocksdb/run_tests.sh`. Since there are so many options for the `db_bench`, it is also worthwhile to read its home page right [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools#db_bench).
 
 
 ## Troubleshooting
