@@ -24,11 +24,21 @@ RUN apt-get install -y \
         librdmacm-dev
 
 # Dependencies require for RocksDB Integration
-# Corresponding error message: "mkfs.xfs: not found", "perf: not found, gflags not installed."
+# Relevant error message: "mkfs.xfs: not found", "gflags not installed."
 RUN apt-get install -y \
         xfsprogs \
-        linux-tools-common \
-        libgflags-dev
+        libgflags-dev \
+        sudo \
+        time
+
+# Dependencies for perf
+RUN apt-get install -y \
+        libdw1 \
+        libelf1 \
+        libunwind8 \
+        libslang2 \
+        libpython2.7 \
+        libnuma1
 
 # Dependencies for getting device information and load uio_pci_generic kernel module
 RUN apt-get install -y \
@@ -45,12 +55,12 @@ RUN git -C /root/spdk submodule update --init
 # Clone the RocksDB repo
 RUN git clone -b spdk https://github.com/spdk/rocksdb.git
 
-# Add run script
-COPY run.sh .
-RUN chmod +x run.sh
-
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENTRYPOINT ["./run.sh"]
+# Add run script
+COPY run .
+RUN chmod +x run
+
+ENTRYPOINT ["./run"]

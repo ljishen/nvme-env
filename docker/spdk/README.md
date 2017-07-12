@@ -3,12 +3,12 @@
 [![Build Status](https://travis-ci.org/ljishen/nvme-env.svg?branch=master)](https://travis-ci.org/ljishen/nvme-env)
 [![](https://images.microbadger.com/badges/image/ljishen/spdk.svg)](http://microbadger.com/images/ljishen/spdk)
 
-Simple image built following the official [SPDK Documentation](https://github.com/spdk/spdk). This image intents to work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme) while can be also used in an equipped system with real NVMe device.
+Simple image built following the official [SPDK Documentation](https://github.com/spdk/spdk). This image intents to work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme) while can be also used in a system equipped with NVMe device.
 
 
 ## Usage
 
-The container startup process encompasses compiling the SPDK source so that it is aware of the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX".**. The container also sets up the [BlobFS](http://www.spdk.io/doc/blobfs.html) so that you can freely try `db_bench` for performance evaluation. Note that 2GB (1024 huge pages) is allocated by default.
+The container startup process encompasses compiling the SPDK source so that it is aware of the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX".**. The container also sets up the [BlobFS](http://www.spdk.io/doc/blobfs.html) so that you can freely try `db_bench` for performance evaluation. Note that 5GB (2560 huge pages) is allocated by default.
 
 * When work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme), start the container without argument
   ```bash
@@ -19,7 +19,7 @@ The container startup process encompasses compiling the SPDK source so that it i
       ljishen/spdk
   ```
 
-* If the system already configured with real NVMe devices
+* For other systems with external module(s) installed (check `/lib/modules/$(uname -r)`) and NVMe devices enabled
   ```bash
   docker run -ti \
       --privileged \

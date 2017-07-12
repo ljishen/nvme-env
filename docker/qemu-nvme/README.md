@@ -78,7 +78,7 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
         -v `pwd`/img:/root/img \
         ljishen/qemu-nvme \
         -smp 2 \
-        -m 4G
+        -m 8G
    ```
    * `-smp` Simulate an SMP system with n CPUs
    * `-m`  Set the RAM size for the guest system
@@ -149,7 +149,7 @@ If you want to use SPDK in this QEMU system emulator, please make sure your CPU 
    Hello world!
    ```
 
-1. Find more details read the README of image [ljishen/spdk](https://github.com/ljishen/nvme-env/tree/master/docker/spdk).
+1. For more details read the README of image [ljishen/spdk](https://github.com/ljishen/nvme-env/tree/master/docker/spdk).
 
 
 ## Troubleshooting

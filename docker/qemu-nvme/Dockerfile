@@ -57,6 +57,23 @@ RUN cp -a $AUFS_SRC/include/uapi/linux/aufs_type.h include/uapi/linux/
 COPY configs/.config .
 RUN make -j`nproc`
 
+## Build the perf program
+RUN apt-get install -y \
+        flex \
+        bison \
+        libelf-dev \
+        libaudit-dev \
+        libperl-dev \
+        python-dev \
+        libdw-dev \
+        libunwind-dev \
+        systemtap-sdt-dev \
+        libssl-dev \
+        liblzma-dev \
+        libiberty-dev \
+        binutils-dev
+RUN make -C tools/perf/ -j`nproc`
+
 # Clean Up
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
