@@ -1,0 +1,293 @@
+
+Thread: db_bench
+ Percent      Module
+============================
+  3.3889      db_bench            
+  1.4594      libc-2.23.so        
+  0.3273      [vdso]              
+  0.1144      libstdc++.so.6.0.21 
+  0.0885      libpthread-2.23.so  
+  0.0487      [kernel.vmlinux]    
+  0.0000      ld-2.23.so          
+  0.0000      libgflags.so.2.1.2  
+============================
+  5.4271       Total
+
+Thread: eal-intr-thread
+ Percent      Module
+============================
+  0.0009      [kernel.vmlinux]    
+============================
+  0.0009       Total
+
+Thread: reactor_0
+ Percent      Module
+============================
+  0.0001      db_bench            
+  0.0000      libc-2.23.so        
+  0.0000      [kernel.vmlinux]    
+  0.0000      libpthread-2.23.so  
+============================
+  0.0001       Total
+
+Thread: rocksdb:bg0
+ Percent      Module
+============================
+  7.4843      db_bench            
+  5.4477      libc-2.23.so        
+  3.3542      [kernel.vmlinux]    
+  0.8314      libstdc++.so.6.0.21 
+  0.6003      libpthread-2.23.so  
+  0.2537      [vdso]              
+  0.0001      libm-2.23.so        
+============================
+ 17.9717       Total
+
+Thread: rocksdb:bg1
+ Percent      Module
+============================
+  0.0281      db_bench            
+  0.0183      libc-2.23.so        
+  0.0021      [kernel.vmlinux]    
+  0.0005      libstdc++.so.6.0.21 
+  0.0002      libpthread-2.23.so  
+  0.0001      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0492       Total
+
+Thread: rocksdb:bg2
+ Percent      Module
+============================
+  0.0259      db_bench            
+  0.0181      libc-2.23.so        
+  0.0020      [kernel.vmlinux]    
+  0.0006      libstdc++.so.6.0.21 
+  0.0002      libpthread-2.23.so  
+  0.0001      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0468       Total
+
+Thread: rocksdb:bg3
+ Percent      Module
+============================
+  0.0253      db_bench            
+  0.0170      libc-2.23.so        
+  0.0019      [kernel.vmlinux]    
+  0.0005      libstdc++.so.6.0.21 
+  0.0003      libpthread-2.23.so  
+  0.0001      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0450       Total
+
+Thread: rocksdb:bg4
+ Percent      Module
+============================
+  0.0172      db_bench            
+  0.0121      libc-2.23.so        
+  0.0015      [kernel.vmlinux]    
+  0.0004      libstdc++.so.6.0.21 
+  0.0001      libpthread-2.23.so  
+  0.0000      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0313       Total
+
+Thread: rocksdb:bg5
+ Percent      Module
+============================
+  0.0220      db_bench            
+  0.0149      libc-2.23.so        
+  0.0018      [kernel.vmlinux]    
+  0.0004      libstdc++.so.6.0.21 
+  0.0001      libpthread-2.23.so  
+  0.0000      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0394       Total
+
+Thread: rocksdb:bg6
+ Percent      Module
+============================
+  0.0269      db_bench            
+  0.0179      libc-2.23.so        
+  0.0020      [kernel.vmlinux]    
+  0.0006      libstdc++.so.6.0.21 
+  0.0001      libpthread-2.23.so  
+  0.0001      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0476       Total
+
+Thread: rocksdb:bg7
+ Percent      Module
+============================
+  0.0217      db_bench            
+  0.0143      libc-2.23.so        
+  0.0016      [kernel.vmlinux]    
+  0.0005      libstdc++.so.6.0.21 
+  0.0001      libpthread-2.23.so  
+  0.0000      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0382       Total
+
+Thread: rocksdb:bg8
+ Percent      Module
+============================
+  0.0230      db_bench            
+  0.0152      libc-2.23.so        
+  0.0017      [kernel.vmlinux]    
+  0.0005      libstdc++.so.6.0.21 
+  0.0002      libpthread-2.23.so  
+  0.0001      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0405       Total
+
+Thread: rocksdb:bg9
+ Percent      Module
+============================
+  0.0153      db_bench            
+  0.0104      libc-2.23.so        
+  0.0014      [kernel.vmlinux]    
+  0.0003      libstdc++.so.6.0.21 
+  0.0001      libpthread-2.23.so  
+  0.0000      [vdso]              
+  0.0000      libm-2.23.so        
+============================
+  0.0277       Total
+
+Thread: spdk
+ Percent      Module
+============================
+ 67.0680      db_bench            
+  7.8240      [kernel.vmlinux]    
+  1.1334      libc-2.23.so        
+  0.2090      libpthread-2.23.so  
+============================
+ 76.2345       Total
+
+ Percent      Module               Function
+=================================================================
+ 20.4810      db_bench             _spdk_reactor_run
+ 15.5615      db_bench             nvme_pcie_qpair_process_completions
+  9.7525      db_bench             spdk_nvme_qpair_process_completions
+  7.0116      [kernel.vmlinux]     _raw_write_unlock_irqrestore
+  6.3112      db_bench             nvme_pcie_qpair_submit_tracker
+  5.4120      db_bench             spdk_ring_dequeue
+  3.2478      db_bench             spdk_get_ticks
+  2.6067      db_bench             bdev_nvme_poll
+  1.9534      [kernel.vmlinux]     finish_task_switch
+  1.8239      db_bench             nvme_transport_qpair_process_completions
+  1.0425      libc-2.23.so         0x000000000009f91d
+  0.8961      db_bench             rocksdb::crc32c::ExtendImpl<&rocksdb::crc32c::Fast_CRC32>
+  0.7531      libstdc++.so.6.0.21  std::__cxx11::basic_string<char,
+  0.7054      libc-2.23.so         0x000000000009f855
+  0.6935      db_bench             rocksdb::(anonymous
+  0.6822      libc-2.23.so         0x000000000009f911
+  0.6757      libc-2.23.so         0x000000000009f929
+  0.5830      libc-2.23.so         0x000000000009f906
+  0.4682      libc-2.23.so         0x000000000009f84e
+  0.4616      db_bench             rocksdb::HistogramStat::Add
+  0.3695      db_bench             spdk_ring_enqueue
+  0.3468      libpthread-2.23.so   __new_sem_wait_slow.constprop.0
+  0.3328      db_bench             spdk_file_write
+  0.2915      db_bench             rocksdb::InternalKeyComparator::Compare
+  0.2901      libc-2.23.so         0x000000000008f2d4
+  0.2658      db_bench             rocksdb::HistogramBucketMapper::IndexForValue
+  0.2621      [vdso]               __vdso_gettimeofday
+  0.2486      db_bench             rocksdb::DBImpl::WriteImpl
+  0.2317      db_bench             rocksdb::CompactionIterator::NextFromInput
+  0.2315      [kernel.vmlinux]     entry_SYSCALL_64
+  0.2296      [kernel.vmlinux]     futex_wait
+  0.2175      db_bench             common_ring_mc_dequeue
+  0.2154      db_bench             spdk_event_allocate
+  0.2130      [kernel.vmlinux]     schedule
+  0.2114      libc-2.23.so         malloc
+  0.2083      db_bench             rocksdb::InternalKeyComparator::FindShortestSeparator
+  0.2043      db_bench             rocksdb::BlockBuilder::Add
+  0.2031      libpthread-2.23.so   sem_post@@GLIBC_2.2.5
+  0.1911      db_bench             rocksdb::BlockBasedTableBuilder::WriteRawBlock
+  0.1879      db_bench             rocksdb::BlockBasedTableBuilder::Add
+  0.1850      [kernel.vmlinux]     wake_q_add
+  0.1826      db_bench             rocksdb::Benchmark::DoWrite
+  0.1822      db_bench             __file_extend_blob
+  0.1802      [kernel.vmlinux]     futex_wake
+  0.1793      libc-2.23.so         0x000000000009f820
+  0.1733      libc-2.23.so         0x000000000009f923
+  0.1697      db_bench             rocksdb::NotifyCollectTableCollectorsOnAdd
+  0.1596      libc-2.23.so         0x000000000009f845
+  0.1573      db_bench             rocksdb::MemTableIterator::Next
+  0.1530      db_bench             rocksdb::MergingIterator::Next
+  0.1514      [kernel.vmlinux]     futex_wait_setup
+  0.1513      [vdso]               0x000000000000097e
+  0.1497      libc-2.23.so         free
+  0.1469      libc-2.23.so         0x000000000007fdf0
+  0.1455      db_bench             rocksdb::BlockBasedTableBuilder::Flush
+  0.1434      [kernel.vmlinux]     sys_futex
+  0.1397      db_bench             __file_extend_done
+  0.1397      db_bench             rocksdb::InlineSkipList<rocksdb::MemTableRep::KeyComparator
+  0.1395      db_bench             rocksdb::MemTable::ShouldFlushNow
+  0.1377      db_bench             rocksdb::WritableFileWriter::WriteBuffered
+  0.1369      db_bench             spdk_blob_get_num_clusters
+  0.1327      [kernel.vmlinux]     __do_softirq
+  0.1312      db_bench             rocksdb::MemTable::Add
+  0.1277      [kernel.vmlinux]     futex_wait_queue_me
+  0.1268      libstdc++.so.6.0.21  operator
+  0.1245      db_bench             rocksdb::RangeDelAggregator::ShouldDelete
+  0.1227      libc-2.23.so         0x000000000009f90b
+  0.1206      libc-2.23.so         0x000000000008f244
+  0.1192      db_bench             rocksdb::Stats::FinishedOps
+  0.1185      [kernel.vmlinux]     get_futex_key
+  0.1181      libc-2.23.so         __libc_calloc
+  0.1163      db_bench             rocksdb::WritableFileWriter::Flush
+  0.1132      db_bench             spdk_mempool_get
+  0.1121      db_bench             rocksdb::BuildTable
+  0.1101      db_bench             spdk_event_call
+  0.1044      db_bench             _init
+  0.1035      [kernel.vmlinux]     get_futex_key_refs.isra.15
+  0.1023      db_bench             rocksdb::MemTableIterator::value
+  0.1023      libc-2.23.so         realloc
+  0.1022      libc-2.23.so         0x000000000009f917
+  0.1020      db_bench             rocksdb::StatisticsImpl::recordTick
+  0.1009      libc-2.23.so         0x000000000009f92f
+  0.0997      db_bench             nvme_pcie_qpair_submit_request
+  0.0964      db_bench             malloc_elem_free
+  0.0961      db_bench             spdk_mempool_put_bulk
+  0.0953      [kernel.vmlinux]     do_futex
+  0.0899      db_bench             rocksdb::Hash
+  0.0897      libc-2.23.so         0x000000000008f2d9
+  0.0894      db_bench             rocksdb::ThreadLocalPtr::Instance
+  0.0876      db_bench             rocksdb::CompactionIterator::Next
+  0.0872      db_bench             rocksdb::InternalKeyPropertiesCollector::InternalAdd
+  0.0871      db_bench             _spdk_blob_persist
+  0.0856      db_bench             rocksdb::WriteBatch::Iterate
+  0.0854      db_bench             rocksdb::ShortenedIndexBuilder::AddIndexEntry
+  0.0845      db_bench             rocksdb::BlockBasedTableBuilder::status
+  0.0825      libc-2.23.so         0x000000000016f9f7
+  0.0813      libc-2.23.so         0x000000000007fd52
+  0.0795      db_bench             std::_Hashtable<rocksdb::OperationType,
+  0.0792      db_bench             spdk_bs_sequence_start
+  0.0791      db_bench             rocksdb::FlushBlockBySizePolicy::Update
+
+
+ Percent      Module
+=================================
+ 78.1467      db_bench
+ 11.2438      [kernel.vmlinux]
+  8.1786      libc-2.23.so
+  0.9501      libstdc++.so.6.0.21
+  0.8992      libpthread-2.23.so
+  0.5814      [vdso]
+  0.0002      libm-2.23.so
+  0.0000      ld-2.23.so
+  0.0000      libgflags.so.2.1.2
+
+Wall time elapsed: 3:31:22
+CPU utilization: 141%
+User:   15728.92 (87.39%)
+System:  2269.32 (12.61%)
+

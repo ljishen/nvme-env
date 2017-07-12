@@ -122,9 +122,10 @@ If you want to use SPDK in this QEMU system emulator, please make sure your CPU 
        --privileged \
        --ipc host \
        -v /dev:/dev \
+       -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
        ljishen/spdk
    ```
-   Just wait until the compiling of SPDK and RocksDB finished.
+   Just wait until the source compiling finished.
 
 1. Try any of the NVMe sample application in the SPDK repo. Here is the sample output from the "Hello World" application
    ```bash

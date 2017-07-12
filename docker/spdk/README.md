@@ -13,23 +13,25 @@ The container startup process encompasses compiling the SPDK source so that it i
 * When work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme), start the container without argument
   ```bash
   docker run -ti \
-      --privileged \
-      --ipc host \
-      -v /dev:/dev \
-      ljishen/spdk
+        --privileged \
+        --ipc host \
+        -v /dev:/dev \
+        -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
+        ljishen/spdk
   ```
 
 * For other systems with external module(s) installed (check `/lib/modules/$(uname -r)`) and NVMe devices enabled
   ```bash
   docker run -ti \
-      --privileged \
-      --ipc host \
-      -v /dev:/dev \
-      ljishen/spdk \
-      /bin/bash
+        --privileged \
+        --ipc host \
+        -v /dev:/dev \
+        -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
+        ljishen/spdk \
+        /bin/bash
   ```
 
-This docker command bind-mounts to the `/dev` which is necessary since it needs to access `/dev/uio0`.
+**1)** This docker command bind-mounts to the `/dev` which is necessary since it needs to access `/dev/uio0`.
 <!---
 Here is the error message if we don't bind-mounts to /dev
 
@@ -40,6 +42,21 @@ mkfs.c:  77:spdk_mkfs_run: *ERROR*: bdev Nvme0n1 not found
 ```
 -->
 
+**2)** The bind-mount to path `/var/lib/docker/aufs/diff` is used when generating perf report during running `db_bench`.
+<!---
+Here is the error message if we don't bind-mounts to /var/lib/docker/aufs/diff
+
+```bash
+Generating perf report for insert test phase...Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/ld-2.23.so, continuing without symbols
+Failed to open /var/lib/docker/aufs/diff/4f877e8daca1d319bec46bfc85dea20d9fa25182ffc8345479a70b84aea0d2eb/root/rocksdb/db_bench, continuing without symbols
+Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libpthread-2.23.so, continuing without symbols
+Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libc-2.23.so, continuing without symbols
+Failed to open /var/lib/docker/aufs/diff/72db9e97d30e822bb272b33655f06878fa53f7acd8852cd187c9f39306130f2f/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21, continuing without symbols
+Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libm-2.23.so, continuing without symbols
+done.
+```
+-->
+
 ### Testing RocksDB with SPDK
 
 The [BlobFS Getting Started Guide](http://www.spdk.io/doc/blobfs.html) has a detail instruction of how to run `db_bench` against a variety of workloads with `test/blobfs/rocksdb/run_tests.sh`. Since there are so many options for the `db_bench`, it is also worthwhile to read its home page right [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools#db_bench).
@@ -47,7 +64,7 @@ The [BlobFS Getting Started Guide](http://www.spdk.io/doc/blobfs.html) has a det
 
 ## Troubleshooting
 
-* When running the `db_bench` with script `run_tests.sh`, check the results in folder `/root/spdk/test/blobfs/rocksdb/results/last`. If you see messages in file `insert_db_bench.txt` similar to the following, you system may not have enough of 5GB available memory.
+* When running the `db_bench` with script `run_tests.sh`, check the results in folder `/root/spdk/test/blobfs/rocksdb/results/last`. If you see messages in file `insert_db_bench.txt` similar to the following, you system may not have enough memory for the 5GB huge pages.
   ```bash
   EAL: Not enough memory available! Requested: 5120MB, available: XXXXMB
   EAL: FATAL: Cannot init memory
