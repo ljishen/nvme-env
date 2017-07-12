@@ -104,9 +104,9 @@ By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if 
 
 ## Troubleshooting
 
-### VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005)
+* **VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005)**
 
-You host system may have an out-of-data VirtualBox installed. Try to either update or uninstall it.
+  You host system may have an out-of-data VirtualBox installed. Please either upgrade or uninstall it.
 
 
 ## Tested Environment

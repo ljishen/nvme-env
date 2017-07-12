@@ -2,11 +2,11 @@
 
 set -e
 
-printf "\nBuilding SPDK and DPDK ...\n"
+printf "\n[INFO]  Building SPDK and DPDK ...\n"
 cd /root/spdk
 ./configure && make -j`nproc`
 
-printf "\nBuilding RocksDB ...\n"
+printf "\n[INFO]  Building RocksDB ...\n"
 cd /root/rocksdb
 make -j`nproc` db_bench SPDK_DIR=/root/spdk
 mkdir /usr/local/etc/spdk/
@@ -21,17 +21,17 @@ if [ $# -eq 0 ]; then
 
     # See http://wiki.qemu.org/Documentation/9psetup
     # for details of setting up VirtFS between the guest and host operating systems.
-    printf "\nMount the Linux kernel source on guest to path $LINUX_SRC\n"
+    printf "\n[INFO]  Mount the Linux kernel source on guest to path $LINUX_SRC\n"
     mount -t 9p -o trans=virtio modules_mount "$LINUX_SRC" -oversion=9p2000.L,posixacl,cache=loose
 
-    printf "\nInstalling external modules (make modules_install) ...\n"
+    printf "\n[INFO]  Installing external modules (make modules_install) ...\n"
     make -C "$LINUX_SRC" modules_install
 
-    printf "\nInstalling perf ...\n"
+    printf "\n[INFO]  Installing perf ...\n"
     cp -p "$LINUX_SRC"/tools/perf/perf /usr/bin/
 else
     if ! hash perf 2>/dev/null; then
-        printf "\nYou may need to install perf before using the db_bench script.\n"
+        printf "\n[WARNING]  You may need to install perf before using the db_bench script.\n"
     fi
 fi
 

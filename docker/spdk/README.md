@@ -8,7 +8,7 @@ Simple image built following the official [SPDK Documentation](https://github.co
 
 ## Usage
 
-The container startup process encompasses compiling the SPDK source so that it is aware of the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX".**. The container also sets up the [BlobFS](http://www.spdk.io/doc/blobfs.html) so that you can freely try `db_bench` for performance evaluation. Note that 5GB (2560 huge pages) is allocated by default.
+The container startup process encompasses compiling the SPDK source so that it is aware of the underlying system supports, e.g. SSSE3, RDRAND. Relying on the docker build may cause errors like **ERROR: This system does not support "XXXX"**. The container also sets up the [BlobFS](http://www.spdk.io/doc/blobfs.html) so that you can freely try `db_bench` for performance evaluation. Note that 5GB (2560 huge pages) is allocated by default.
 
 * When work with the NVMe device emulation image [ljishen/qemu-nvme](https://github.com/ljishen/nvme-env/tree/master/docker/qemu-nvme), start the container without argument
   ```bash
@@ -43,3 +43,16 @@ mkfs.c:  77:spdk_mkfs_run: *ERROR*: bdev Nvme0n1 not found
 ### Testing RocksDB with SPDK
 
 The [BlobFS Getting Started Guide](http://www.spdk.io/doc/blobfs.html) has a detail instruction of how to run `db_bench` against a variety of workloads with `test/blobfs/rocksdb/run_tests.sh`.
+
+
+## Troubleshooting
+
+* When running the `db_bench` with script `run_tests.sh`, check the results in folder `/root/spdk/test/blobfs/rocksdb/results/last`. If you see messages in file `insert_db_bench.txt` similar to the following, you system may not have enough of 5GB available memory.
+  ```bash
+  EAL: Not enough memory available! Requested: 5120MB, available: XXXXMB
+  EAL: FATAL: Cannot init memory
+
+  EAL: Cannot init memory
+
+  Failed to initialize DPDK
+  ```
