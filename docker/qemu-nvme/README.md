@@ -73,12 +73,12 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 1. Boot the QEMU Linux system
    ```bash
    docker run -ti \
-        --privileged \
-        -v `pwd`/device:/root/device \
-        -v `pwd`/img:/root/img \
-        ljishen/qemu-nvme \
-        -smp 2 \
-        -m 8G
+       --privileged \
+       -v `pwd`/device:/root/device \
+       -v `pwd`/img:/root/img \
+       ljishen/qemu-nvme \
+       -smp 2 \
+       -m 8G
    ```
    * `-smp` Simulate an SMP system with n CPUs
    * `-m`  Set the RAM size for the guest system
