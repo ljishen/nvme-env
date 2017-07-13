@@ -24,20 +24,20 @@ grep '\bssse3\b' /proc/cpuinfo
 1. Build the VirtualBox kernel modules **only once** before the first time your launch the VM
    ```bash
    docker run -ti \
-        --privileged \
-        -v /usr/src:/usr/src \
-        -v /lib/modules:/lib/modules \
-        ljishen/spdk-vagrant \
-        /sbin/vboxconfig
+       --privileged \
+       -v /usr/src:/usr/src \
+       -v /lib/modules:/lib/modules \
+       ljishen/spdk-vagrant \
+       /sbin/vboxconfig
    ```
    This process shows the error message **Failed to connect to bus: No such file or directory** for several times which are expected and harmless. These errors come from calling `systemctl daemon-reexec` in the startup script. According to the [man page](http://man7.org/linux/man-pages/man1/systemctl.1.html) for `systemctl`, the command `daemon-reexec` "is of little use except for debugging and package upgrades".
 
 1. Launch the VM
    ```bash
    docker run -ti \
-        --privileged \
-        --net host \
-        ljishen/spdk-vagrant
+       --privileged \
+       --net host \
+       ljishen/spdk-vagrant
    ```
    This gonna take a while since it sets up the network, installs all the dependencies and also builds the SPDK.
 
