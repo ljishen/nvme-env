@@ -82,7 +82,13 @@ grep '\bssse3\b' /proc/cpuinfo
 
 ## VM Configuration
 
-By default, the VM boots with 4GM memory and 2 virtual CPU. Do the following if you want to change the default resource configuration
+By default, the VM boots with:
+
+- Ubuntu 16.04 LTS (GNU/Linux 4.4.0-21-generic x86_64)
+- 4GM memory
+- 4 virtual CPU
+
+The following instructions help to change the default resource configuration if you want:
 
 1. Launch the **bash** shell
    ```bash
