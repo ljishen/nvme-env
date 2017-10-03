@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/ljishen/nvme-env.svg?branch=master)](https://travis-ci.org/ljishen/nvme-env)
 [![](https://images.microbadger.com/badges/image/ljishen/spdk-vagrant.svg)](http://microbadger.com/images/ljishen/spdk-vagrant)
 
-This work puts the [vagrant environment](https://github.com/spdk/spdk/blob/master/scripts/vagrant/README.md) configured for project Storage Performance Development Kit (SPDK) into a docker container.
+This work packages this [Vagrant Development Environment](http://www.spdk.io/doc/vagrant.html) configured for project Storage Performance Development Kit (SPDK) into a docker container.
 
 
 ## Prerequisite
@@ -50,7 +50,7 @@ grep '\bssse3\b' /proc/cpuinfo
    00:0e.0 Non-Volatile memory controller: InnoTek Systemberatung GmbH Device 4e56
 
    vagrant@localhost:~$ sudo /spdk/examples/nvme/hello_world/hello_world
-   Starting DPDK 17.05.0 initialization...
+   Starting DPDK 17.08.0 initialization...
    [ DPDK EAL parameters: hello_world -c 0x1 --file-prefix=spdk0 --base-virtaddr=0x1000000000 --proc-type=auto ]
    EAL: Detected 4 lcore(s)
    EAL: Auto-detected process type: PRIMARY
