@@ -63,7 +63,7 @@ Install the KVM if you don't have the KVM modules. For Ubuntu, here is the docum
 
 1. (Optional) Modify `img/my-user-data` and generate your `img/seed.img` using `cloud-localds`. `cloud-localds` is available in package `cloud-image-utils` if you are working on Ubuntu.
    ```bash
-   cloud-localds my-seed.img my-user-data
+   cloud-localds img/my-seed.img img/my-user-data
    ```
 
    The cloud-config is fed by `cloud-init` ([doc](http://cloudinit.readthedocs.io/en/latest/topics/examples.html), [example](http://blog.dustinkirkland.com/2016/09/howto-launch-ubuntu-cloud-image-with.html)).

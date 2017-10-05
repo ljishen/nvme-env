@@ -4,3 +4,5 @@ chpasswd: { expire: False }
 ssh_pwauth: True
 sudo: ALL=(ALL) NOPASSWD:ALL
 groups: sudo
+hostname: ubuntu
+manage_etc_hosts: true

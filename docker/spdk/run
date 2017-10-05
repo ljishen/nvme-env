@@ -4,7 +4,7 @@ set -e
 
 printf "\n[INFO]  Building SPDK and DPDK ...\n"
 cd /root/spdk
-./configure && make -j`nproc`
+./configure --with-rdma && make -j`nproc`
 
 printf "\n[INFO]  Building RocksDB ...\n"
 cd /root/rocksdb
