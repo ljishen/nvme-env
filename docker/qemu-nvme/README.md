@@ -125,7 +125,6 @@ If you want to use SPDK in this QEMU system emulator, please make sure your CPU 
        --privileged \
        --ipc host \
        -v /dev:/dev \
-       -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
        ljishen/spdk
    ```
    Just wait until the source compiling finished.
@@ -160,7 +159,7 @@ If you want to use SPDK in this QEMU system emulator, please make sure your CPU 
 
 Look here if you have a problem while following the previous usage steps.
 
-### Error: "docker: failed to register layer: Error processing tar file(exit status 1): write /usr/lib/x86_64-linux-gnu/libLLVM-3.8.so.1: no space left on device."
+### docker: failed to register layer: Error processing tar file(exit status 1): write /usr/lib/llvm-3.8/lib/libLLVMX86CodeGen.a: no space left on device.
 
 You may need to resize the image using [virt-* tools](https://docs.openstack.org/image-guide/modify-images.html#resize-an-image), then retry the failed docker command.
 

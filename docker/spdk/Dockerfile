@@ -4,18 +4,17 @@ FROM phusion/baseimage:0.9.22
 MAINTAINER Jianshen Liu <jliu120@ucsc.edu>
 
 RUN apt-get update \
-    && apt-get install -y git
+    && apt-get install -y \
+        git \
+        nvme-cli
 
-# Dependencies require for RocksDB Integration
+# Dependencies required for running db_bench
 # Relevant error message: "mkfs.xfs: not found", "gflags not installed."
 RUN apt-get install -y \
         xfsprogs \
         libgflags-dev \
         sudo \
-        time
-
-# Dependencies for perf
-RUN apt-get install -y \
+        time \
         libdw1 \
         libelf1 \
         libunwind8 \
@@ -25,7 +24,6 @@ RUN apt-get install -y \
 
 # Dependencies for getting device information and load uio_pci_generic kernel module
 RUN apt-get install -y \
-        nvme-cli \
         pciutils \
         kmod
 

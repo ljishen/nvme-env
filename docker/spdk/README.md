@@ -16,7 +16,6 @@ The container startup process encompasses compiling the SPDK source so that it i
       --privileged \
       --ipc host \
       -v /dev:/dev \
-      -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
       ljishen/spdk
   ```
 
@@ -26,12 +25,11 @@ The container startup process encompasses compiling the SPDK source so that it i
       --privileged \
       --ipc host \
       -v /dev:/dev \
-      -v /var/lib/docker/aufs/diff:/var/lib/docker/aufs/diff \
       ljishen/spdk \
       /bin/bash
   ```
 
-**1)** This docker command bind-mounts to the `/dev` which is necessary since it needs to access `/dev/uio0`.
+This docker command bind-mounts to the `/dev` which is necessary since it needs to access `/dev/uio0`.
 <!---
 Here is the error message if we don't bind-mounts to /dev
 
@@ -39,21 +37,6 @@ Here is the error message if we don't bind-mounts to /dev
 EAL: Cannot open /dev/uio0: No such file or directory
 EAL: Requested device 0000:00:04.0 cannot be used
 mkfs.c:  77:spdk_mkfs_run: *ERROR*: bdev Nvme0n1 not found
-```
--->
-
-**2)** The bind-mount to path `/var/lib/docker/aufs/diff` is used when generating perf report during running `db_bench`.
-<!---
-Here is the error message if we don't bind-mounts to /var/lib/docker/aufs/diff
-
-```bash
-Generating perf report for insert test phase...Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/ld-2.23.so, continuing without symbols
-Failed to open /var/lib/docker/aufs/diff/4f877e8daca1d319bec46bfc85dea20d9fa25182ffc8345479a70b84aea0d2eb/root/rocksdb/db_bench, continuing without symbols
-Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libpthread-2.23.so, continuing without symbols
-Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libc-2.23.so, continuing without symbols
-Failed to open /var/lib/docker/aufs/diff/72db9e97d30e822bb272b33655f06878fa53f7acd8852cd187c9f39306130f2f/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21, continuing without symbols
-Failed to open /var/lib/docker/aufs/diff/d82991ccac9a6a30672470d40fdd864a8147ee4dc2e9bbef27057c05315c5775/lib/x86_64-linux-gnu/libm-2.23.so, continuing without symbols
-done.
 ```
 -->
 
